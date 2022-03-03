@@ -4,7 +4,7 @@ import { Context } from "../App";
 
 export default function Home() {
   const context = useContext(Context);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <SafeAreaView>
       <Text>ID : {context.Id}</Text>
