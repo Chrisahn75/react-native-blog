@@ -1,12 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {View, StyleSheet } from "react-native";
+import { useState, createContext } from "react";
+import { NativeRouter, Routes, Route } from "react-router-native";
+
+import Login from "./components/Login";
+import Home from "./components/Home";
+
+export const Context = createContext("");
 
 export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [Id, setId] = useState("");
+
+  const Val = {
+    isLoggedIn: isLoggedIn,
+    setIsLoggedIn: handleLoggedIn,
+    Id: Id,
+    setId: setId,
+  };
+
+  const handleLoggedIn = () => {
+    setIsLoggedIn((prev) => !prev);
+  };
+
+  const LoggedIn = () => {
+    return isLoggedIn ? (
+      <Home context={Val}/>
+    ) : (
+      <Login context={Val}/>
+    );
+  };
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Context.Provider value={Val}>
+      <View style={styles.container}>
+        <NativeRouter>
+          <Routes>
+            <Route exact path="/" element={LoggedIn()} />
+          </Routes>
+        </NativeRouter>
+      </View>
+    </Context.Provider>
   );
 }
 
@@ -14,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
