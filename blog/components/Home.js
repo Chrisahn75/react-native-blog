@@ -7,6 +7,10 @@ export default function Home() {
 
   return (
     <SafeAreaView>
+      <Text>ID : {context.Id}</Text>
+      <TouchableOpacity onPress={() => context.setIsLoggedIn()}>
+        <Button style={styles.btn}>Logout</Button>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }

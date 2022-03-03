@@ -8,7 +8,6 @@ import { SafeAreaView, StyleSheet, TextInput, TouchableOpacity, Text, Alert} fro
     const [isLoggedIn, setIsLoggedIn] = useState(false);
   
     const validId = (user) => {
-      context.setId(user.toString());
       const userRegex = /^([1-9][0-9]?|10)$/;
       if (userRegex.test(user) && user <= 10) {
         return handleId(true);
@@ -20,10 +19,10 @@ import { SafeAreaView, StyleSheet, TextInput, TouchableOpacity, Text, Alert} fro
     const handleId = (e) => {
       setId(e);
     };
-    
+
     const handlePress = () => {
       if (Id) {
-        return validID();
+        return validId();
       } else {
        console.warn("Please the ID must be between 1 and 10");
        Alert.alert("Please the ID must be between 1 and 10")
