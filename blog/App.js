@@ -2,8 +2,8 @@ import {View, StyleSheet } from "react-native";
 import { useState, createContext } from "react";
 import { NativeRouter, Routes, Route } from "react-router-native";
 
-import Login from "./components/Login";
-import Home from "./components/Home";
+import Login from "./views/Login";
+import Home from "./views/Home";
 
 export const Context = createContext("");
 
